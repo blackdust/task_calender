@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+   include SessionsHelper
+
 
   def new
   end
@@ -7,8 +9,10 @@ class SessionsController < ApplicationController
 
     user = User.find_by(mail: params[:session][:email])
     if user && user.authenticate(params[:session][:password])
-      # log_in user
-      redirect_to user
+       log_in user
+       redirect_to user
+
+      
     else
       flash[:danger] = 'Invalid email/password combination' # 不完全正确
       render 'new'

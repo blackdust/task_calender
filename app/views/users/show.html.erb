@@ -332,15 +332,53 @@ $('#year').text(year2);
 
 
 $("td").click(function(){
-var year  =  $("#year").text();
-var month  =  $("#month").text();
-var date  =  $(this).text();
-var color =  $(this).css("color");
-var a  = year+"/"+month+"/"+date+color;
+var year  =  parseInt($("#year").text());
+var month  =  parseInt($("#month").text());
+var date  =  parseInt($(this).text());
 
-});
+var color =  $(this).css("color").toString();
+
+// window.location.href ="/users/task"
+if(color == "rgb(192, 192, 192)"){
+  if(date > 20){
+    if(month == 1){
+      year--;
+      month = 12;
+      var a  = year+"/"+month+"/"+date;
+
+     window.location.href ="/tasks?year="+year+"&month="+month+"&date="+date;
+
+    } else{
+      month--;
+      var a  = year+"/"+month+"/"+date;
+     
+       window.location.href ="/tasks?year="+year+"&month="+month+"&date="+date;
+
+    };
+  } else if(date < 15){
+    if(month == 12){
+      year++;
+      month = 1;
+      var a  = year+"/"+month+"/"+date;
+       window.location.href ="/tasks?year="+year+"&month="+month+"&date="+date;
+
+    } else{
+      month++;
+      var a  = year+"/"+month+"/"+date;
+     window.location.href ="/tasks?year="+year+"&month="+month+"&date="+date;
+
+    };
+  }
+}else{
+var a  = year+"/"+month+"/"+date;
+ window.location.href ="/tasks?year="+year+"&month="+month+"&date="+date;
+
+}
 });
 
+
+ //大方法体
+});
 </script>
 <body onselectstart="return false">
   <div id='head'> 

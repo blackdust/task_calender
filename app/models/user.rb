@@ -7,5 +7,6 @@ class User
    field:password_digest, type:String
    has_secure_password
    validates_confirmation_of :password
+   has_many :tasks
    # attr_accessor  :password, :password_confirmation 
 end

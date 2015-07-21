@@ -3,11 +3,14 @@ module SessionsHelper
 
 
   def log_in(user)
+    p 11111111111111
+
     session[:user_id] = user.id.to_s
+    p session[:user_id]
   end
-  # 返回当前登录的用户（如果有的话）
+ 
   def current_user
-    @current_user ||= User.find_by(id: session[:user_id])
+    @current_user ||= User.find_by(id: session[:user_id].to_i)
   end
   def logged_in?
     !current_user.nil?

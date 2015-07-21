@@ -1,0 +1,117 @@
+
+所选日期：<span><%=@year%></span>年<span><%=@month%></span>月<span><%=@date%></span>日<br>
+<h1>任务列表</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Content</th>
+      <th>Date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.content %></td>
+        <td><%= task.date %></td>
+        <td><%= link_to 'Show', task %></td>
+        <td><%= link_to 'Edit', edit_task_path(task) %></td>
+        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+ <div>
+<%= link_to 'New Task', new_task_path %>
+</div> 
+<br>
+
+<style type="text/css">
+#down{
+  position: relative;
+  top: -5px;
+  display:inline;
+}
+#textfield{
+  width: 800px;
+  height: 30px;
+}
+.task{
+background-color: pink;
+width:1000px;
+text-align: center;
+
+
+}
+.task > div{
+  text-align: left;
+}
+
+</style>
+
+
+
+
+
+  <!--< input type="text" name="textfield" id="textfield" /><br/>
+  <div class= "button">
+  <%=button_tag '建立', type: 'button' ,class:'bt1'%>
+  <%=button_tag '取消', type: 'button' ,class:'bt2'%>
+  </div>
+ -->
+
+<h2 style="display:inline"> 新建任务</h2>
+<div id="down"><%=image_tag("http://www.iconeasy.com/icon/png/System/iVista/Plus.png", size: "40x40", alt: "Edit Entry")%></div>
+
+
+
+<script type="text/javascript">
+jQuery(document).ready(function(){
+});
+
+$('#down').click(function(){
+  $('h1').after("<div class=\"task\"><br><input type=\"text\" name=\"textfield\" id=\"textfield\"><br><div class=\"button\"><button name=\"button\" type=\"button\" class=\"bt1\">建立</button><button name=\"button\"  type=\"button\" class=\"bt2\">取消</button></div></div>")
+
+  $('.bt2').click(function(){
+  $(this).parent().parent().remove();
+  });
+
+
+
+   $('.bt1').click(function(){
+    var year = $('span:eq(0)').text()
+    var month = $('span:eq(1)').text()
+    var date = $('span:eq(2)').text()
+    var ymd = year+"/"+month+"/"+date
+  input_elm = jQuery(this).closest('.task').find('input').val();
+  $('#task_content').val(input_elm)
+  $('#task_date').val(ymd)
+  $('h1').text('1')
+
+  $('#1').click();
+  
+});
+});
+</script>
+
+<div style="display:none;"> 
+<div>
+<form class="new_task" id="new_task" action="/tasks" accept-charset="UTF-8" method="post">
+  <input name="utf8" type="hidden" value="✓">
+  <input type="hidden" name="authenticity_token" value="p7cuV8j1SNavaF8VVM17LJAf3LfyDJz3rPzJYtwsuREhb3otVg8OrCKZMnYEbWZUrgMnk0LpuZLTT8DRLFZCIw==">
+
+  <div class="field">
+    <label for="task_content">Content</label><br>
+    <input type="text" name="task[content]" id="task_content">
+  </div>
+  <div class="field">
+    <label for="task_date">Date</label><br>
+    <input type="text" name="task[date]" id="task_date">
+  </div>
+  <div id="actions">
+    <input type="submit" name="commit" value="Create Task" id='1'>
+  </div>
+</form>
+</div>
