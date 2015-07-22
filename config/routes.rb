@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   delete 'logout'  => 'sessions#destroy'
   post 'users/task'
   get 'users/task'
-  post 'tasks/list'
-  get 'tasks/list'
+  post 'list'=>'tasks#list'
+  get 'list'=>'tasks#list'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

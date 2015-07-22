@@ -4,7 +4,9 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all
+    # @tasks = Task.all
+    @user=User.find(session[:user_id])
+    @tasks=@user.tasks
     @year=params[:year]
     @month=params[:month]
     @date=params[:date]
@@ -27,14 +29,19 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
+    @user=User.find(session[:user_id])
+    @task = @user.tasks.new(task_params)
 
-   
-   @user=User.find(session[:user_id])
-    @task = Task.new(task_params)
+    # p @user.tasks
+    # @user.tasks.create!(task_params)
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to tasks_url, notice: 'Task was successfully created.' }
+        # format.html { redirect_to tasks_url, notice: 'Task was successfully created.' }
+        format.html { 
+          @tasks = [@task]
+          render :layout => false, :template => 'tasks/index.html.erb'
+        }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new }
@@ -63,9 +70,13 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     respond_to do |format|
-      format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
-      format.json { head :no_content }
+    format.html{
+      @tasks = [@task]
+      render :layout => false, :template => 'tasks/index.html.erb'
+     
+    }
     end
+    
   end
 
   private

@@ -1,58 +1,43 @@
 
+<div>
 所选日期：<span><%=@year%></span>年<span><%=@month%></span>月<span><%=@date%></span>日<br>
+</div>
 <h1>任务列表</h1>
 
-<table>
+<table class="table table-striped">
+<!-- <table> -->
   <thead>
     <tr>
-      <th>Content</th>
-      <th>Date</th>
+     <!--  <th>任务id</th> -->
+     <th></th>
+      <th>任务描述</th>
+      <th>时间</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
+
     <% @tasks.each do |task| %>
-      <tr>
+      <tr class="tr">
+        <td><div class='task_id'><%=task.id.to_s%></div></td>
         <td><%= task.content %></td>
         <td><%= task.date %></td>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+       <td>
+        <div class = 'modify'><%=image_tag("http://pic.sucaibar.com/pic/201308/08/ad392948a9.png", size: "40x40", alt: "Edit Entry")%></div>
+          <div class = 'delete'><%=image_tag("http://www.iconpng.com/png/luna-blue/trash.png", size: "40x40", alt: "Edit Entry")%></div>
+        </td> 
+          
       </tr>
+
     <% end %>
   </tbody>
+
 </table>
- <div>
+ <!-- <div>
 <%= link_to 'New Task', new_task_path %>
-</div> 
+</div>  -->
 <br>
-
-<style type="text/css">
-#down{
-  position: relative;
-  top: -5px;
-  display:inline;
-}
-#textfield{
-  width: 800px;
-  height: 30px;
-}
-.task{
-background-color: pink;
-width:1000px;
-text-align: center;
-
-
-}
-.task > div{
-  text-align: left;
-}
-
-</style>
-
-
-
 
 
   <!--< input type="text" name="textfield" id="textfield" /><br/>
@@ -64,37 +49,6 @@ text-align: center;
 
 <h2 style="display:inline"> 新建任务</h2>
 <div id="down"><%=image_tag("http://www.iconeasy.com/icon/png/System/iVista/Plus.png", size: "40x40", alt: "Edit Entry")%></div>
-
-
-
-<script type="text/javascript">
-jQuery(document).ready(function(){
-});
-
-$('#down').click(function(){
-  $('h1').after("<div class=\"task\"><br><input type=\"text\" name=\"textfield\" id=\"textfield\"><br><div class=\"button\"><button name=\"button\" type=\"button\" class=\"bt1\">建立</button><button name=\"button\"  type=\"button\" class=\"bt2\">取消</button></div></div>")
-
-  $('.bt2').click(function(){
-  $(this).parent().parent().remove();
-  });
-
-
-
-   $('.bt1').click(function(){
-    var year = $('span:eq(0)').text()
-    var month = $('span:eq(1)').text()
-    var date = $('span:eq(2)').text()
-    var ymd = year+"/"+month+"/"+date
-  input_elm = jQuery(this).closest('.task').find('input').val();
-  $('#task_content').val(input_elm)
-  $('#task_date').val(ymd)
-  $('h1').text('1')
-
-  $('#1').click();
-  
-});
-});
-</script>
 
 <div style="display:none;"> 
 <div>

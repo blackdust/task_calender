@@ -10,7 +10,19 @@
 </head>
 <body>
 
-   
+
+    <nav>
+      <ul class="nav navbar-nav pull-right">
+        <%if logged_in?%>
+           <li><%= link_to "登出", logout_path, method: "delete" %>
+           </li>
+         <%else%>
+         <p>未登录</p>
+         <%end%>
+       </ul>     
+     </nav>
+
+
 
 <%= yield %>
 

@@ -1,0 +1,40 @@
+#down{
+  position: relative;
+  top: -5px;
+  display:inline;
+}
+.task-text{
+  margin-top: 20px;
+  width: 800px;
+  height: 30px;
+}
+.task{
+background-color: pink;
+width:1000px;
+text-align: center;
+
+
+}
+.task > div{
+  text-align: left;
+}
+
+.modify{
+  display: inline;
+  margin-right: 30px;
+}
+.delete{
+  display: inline;
+}
+.task_id{
+  display: none;
+}
+.tr{}
+
+.submit{
+color: green
+}
+.cancel{
+color: red
+}
+.val{}
