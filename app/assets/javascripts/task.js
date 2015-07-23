@@ -133,20 +133,12 @@ jQuery(document).on('click', '.modify',function(evt){
   evt.stopPropagation();
   var area_text = jQuery(this).closest('tr').find('td').eq(1).text();
   var task_id =jQuery(this).parent().parent().find('.task_id').text();
-  var date = jQuery('.span2').val();
-
-  jQuery('.span2').datetimepicker({
-  language: 'zh-CH',
-  weekStart: 1,
-  todayBtn: 1,
-  autolose: 1,
-  todayHighlight: 1,
-  startView: 2,
-  forceParse: 0,
-  showMeridian: 1
-  });
-  jQuery('.span2').click();
-  alert(date)
+  // var date = jQuery('.span2').val();
+ $(".form_datetime").datetimepicker({
+        format: "dd MM yyyy - hh:ii"
+    });
+   jQuery('.add-on').click();
+ 
   //   jQuery.ajax({
   //     url: 'tasks/'+task_id,
   //     type: 'PUT',
