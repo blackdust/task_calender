@@ -38,3 +38,6 @@ color: green
 color: red
 }
 .val{}
+.hidden_data{
+  display: none;
+}

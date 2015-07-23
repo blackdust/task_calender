@@ -64,17 +64,18 @@ jQuery(document).on('click','.delete', function(){
   })
 
 
-jQuery(document).on('click','.delete', function(){
-      var task_id=jQuery(this).parent().parent().find('.task_id').text();
-      var nod =this;
-      jQuery.ajax({
-        url: 'tasks/'+task_id,
-        type: 'DELETE',
-      success: function(res) {
-        jQuery(nod).closest('tr').remove();
-      }
-     })       
-  })
+  jQuery(document).on('click','.delete', function(evt){ 
+    evt.stopPropagation();     
+    var task_id = jQuery(this).parent().parent().find('.task_id').text();
+    var nod = this;
+    jQuery.ajax({
+      url: 'tasks/'+task_id,
+      type: 'DELETE',
+    success: function(res) {
+      jQuery(nod).closest('tr').remove();
+    }
+  })       
+})
 
 
 // date picker 修改时间
@@ -93,27 +94,40 @@ jQuery(document).on('click','.delete', function(){
 
 
 jQuery(document).on('click', '.tr',function() {
-var textarea = "<input type='text' name='textfield' class='textarea'><span class='submit'> 提交 </span> <span class='cancel'>取消</span>"
-
-if (jQuery(this).find('.textarea').html()!=null)
+var textarea = "<td>"+
+"<input type='text' name='textfield' class='textarea'>"+
+"<span class='submit'> 提交 </span>"+
+" <span class='cancel'>取消</span>"+
+"</td>"
+var value = jQuery(this).find('td').eq(1).text();
+if (jQuery(this).closest('tbody').find('.textarea').html()!=null)
 {alert('先完成修改')}else{
+var td1_text = jQuery(this).find('td').eq(1).text();
+var data ="<p class ='hidden_data'>"+td1_text+"</p>"
+jQuery('h2').after(data)
 jQuery(this).find('td').eq(1).after(textarea)
 jQuery(this).find('td').eq(1).remove();
 }
-// jQuery.ajax({
-//         url: 'tasks/'+task_id,
-//         type: 'POST',
-//         data:{}
-
-// })
 })
-})
-// jQuery(document).on('click', '.submit',function()
 
 
+jQuery(document).on('click', '.cancel',function(evt){
+  evt.stopPropagation();
+  var content="<td>" +jQuery('.hidden_data').text()+"</td>"
+  jQuery(this).closest('tr').find('td').eq(0).after(content)
+  jQuery(this).closest('td').remove() 
+  jQuery('.hidden_data').remove();
+
+});
+
+});
+
+ jQuery(document).on('click', '.submit',function(evt){
+ evt.stopPropagation();
+ var area_text = jQuery(this).closest('td').find('.textarea').val()
 
 
-// });
+ });
 
 
   // $('#down').click(function(){
