@@ -107,11 +107,11 @@ jQuery(document).on('click', '.cancel',function(evt){
 
 
 jQuery(document).on('click', '.submit',function(evt){
- evt.stopPropagation();
- var area_text = jQuery(this).closest('td').find('.textarea').val()
- var task_id =jQuery(this).parent().parent().find('.task_id').text();
- var date = jQuery(this).parent().parent().find('td').eq(2).text();
-jQuery.ajax({
+  evt.stopPropagation();
+  var area_text = jQuery(this).closest('td').find('.textarea').val()
+  var task_id =jQuery(this).parent().parent().find('.task_id').text();
+  var date = jQuery(this).parent().parent().find('td').eq(2).text();
+    jQuery.ajax({
       url: 'tasks/'+task_id,
       type: 'PUT',
       data: {
@@ -120,21 +120,84 @@ jQuery.ajax({
       },
     success: function(res) {
       jQuery('.textarea').closest('tr').find('td').eq(0).after('<td>'+area_text+'</td>');
-      jQuery('.textarea').closest('td').remove();
-     
-      
+      jQuery('.textarea').closest('td').remove();     
     }
- });
+    });
 
- });
+  });
+
+
+
+
+jQuery(document).on('click', '.modify',function(evt){
+  evt.stopPropagation();
+  var area_text = jQuery(this).closest('tr').find('td').eq(1).text();
+  var task_id =jQuery(this).parent().parent().find('.task_id').text();
+  var date = jQuery('.span2').val();
+
+  jQuery('.span2').datetimepicker({
+  language: 'zh-CH',
+  weekStart: 1,
+  todayBtn: 1,
+  autolose: 1,
+  todayHighlight: 1,
+  startView: 2,
+  forceParse: 0,
+  showMeridian: 1
+  });
+  jQuery('.span2').click();
+  alert(date)
+  //   jQuery.ajax({
+  //     url: 'tasks/'+task_id,
+  //     type: 'PUT',
+  //     data: {
+  //       'task[content]': area_text,
+  //       'task[date]': date
+  //     },
+  //   success: function(res) {
+  //     jQuery('.textarea').closest('tr').find('td').eq(0).after('<td>'+area_text+'</td>');
+  //     jQuery('.textarea').closest('td').remove();     
+  //   }
+  //   });
+
+
+
+  });
+
+
+
+
+
 
 });
+
+
+
+
+
 
 // jQuery(document).ready(function(){
 //   $('#datetimepicker').datetimepicker();
 // })
 
 
+
+ 
+
+
+
+// jQuery(document).ready(function(){
+//   jQuery('.span2').datetimepicker({
+//   language: 'zh-CH',
+//   weekStart: 1,
+//   todayBtn: 1,
+//   autolose: 1,
+//   todayHighlight: 1,
+//   startView: 2,
+//   forceParse: 0,
+//   showMeridian: 1
+//   });
+//  });
 
 
 // });
