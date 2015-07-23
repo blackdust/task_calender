@@ -77,22 +77,6 @@ jQuery(document).on('click','.delete', function(){
   })       
 })
 
-
-// date picker 修改时间
-// jQuery(document).on('click','.modify', function(){
-//       var task_id=jQuery(this).parent().parent().find('.task_id').text();
-//       var nod =this;
-//       jQuery.ajax({
-//         url: 'tasks/'+task_id,
-//         type: 'DELETE',
-//       success: function(res) {
-//         jQuery(nod).closest('tr').remove();
-//       }
-//      })       
-//   })
-
-
-
 jQuery(document).on('click', '.tr',function() {
 var textarea = "<td>"+
 "<input type='text' name='textfield' class='textarea'>"+
@@ -120,15 +104,40 @@ jQuery(document).on('click', '.cancel',function(evt){
 
 });
 
-});
 
- jQuery(document).on('click', '.submit',function(evt){
+
+jQuery(document).on('click', '.submit',function(evt){
  evt.stopPropagation();
  var area_text = jQuery(this).closest('td').find('.textarea').val()
-
+ var task_id =jQuery(this).parent().parent().find('.task_id').text();
+ var date = jQuery(this).parent().parent().find('td').eq(2).text();
+jQuery.ajax({
+      url: 'tasks/'+task_id,
+      type: 'PUT',
+      data: {
+        'task[content]': area_text,
+        'task[date]': date
+      },
+    success: function(res) {
+      jQuery('.textarea').closest('tr').find('td').eq(0).after('<td>'+area_text+'</td>');
+      jQuery('.textarea').closest('td').remove();
+     
+      
+    }
+ });
 
  });
 
+});
+
+// jQuery(document).ready(function(){
+//   $('#datetimepicker').datetimepicker();
+// })
+
+
+
+
+// });
 
   // $('#down').click(function(){
   //   $('h1').after("<div class=\"task\"><br><input type=\"text\" name=\"textfield\" id=\"textfield\"><br><div class=\"button\"><button name=\"button\" type=\"button\" class=\"bt1\">建立</button><button name=\"button\"  type=\"button\" class=\"bt2\">取消</button></div></div>")
