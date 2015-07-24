@@ -6,7 +6,7 @@ class TasksController < ApplicationController
   def index
     # @tasks = Task.all
     @user=User.find(session[:user_id])
-    @tasks=@user.tasks
+    @tasks=@user.tasks.all.sort(created_at:-1)
     @year=params[:year]
     @month=params[:month]
     @date=params[:date]
@@ -62,7 +62,7 @@ class TasksController < ApplicationController
       render :layout => false, :template => 'tasks/index.html.erb'
      
     }
-    
+
       
     end
   end
