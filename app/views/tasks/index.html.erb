@@ -25,7 +25,12 @@
       <tr class="tr">
         <td><div class='task_id'><%=task.id.to_s%></div></td>
         <td><%= task.content %></td>
-        <td><%= task.date %></td>
+        <td><%= task.date %>
+          <div class="input-append date form_datetime">
+            <!-- <div class='hidden_data'><input size="16" type="text" value="" readonly></div> -->
+            <div ><input size="16" type="text" value="" readonly></div>
+             <span class="add-on"><i class="icon-th"></i></span>
+    </div></td>
        <td>
         <div class = 'modify'><%=image_tag("http://pic.sucaibar.com/pic/201308/08/ad392948a9.png", size: "40x40", alt: "Edit Entry")%></div>
           <div class = 'delete'><%=image_tag("http://www.iconpng.com/png/luna-blue/trash.png", size: "40x40", alt: "Edit Entry")%></div>
@@ -38,15 +43,11 @@
 
 </table>
 
-<br>
-
-
-<div class="input-append date form_datetime">
-    <input size="16" type="text" value="" readonly>
+<p class='form_datetime' readonly>1</p>
+<!-- <div class="input-append date form_datetime">
+    <div class='hidden_data'><input size="16" type="text" value="" readonly></div>
     <span class="add-on"><i class="icon-th"></i></span>
-    <button type='button' >提交修改日期</button>
-
-</div>
+</div> -->
 
 <!-- <div class ='hidden_data'>
 <div class="input-append date" id="datetimepicker" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
