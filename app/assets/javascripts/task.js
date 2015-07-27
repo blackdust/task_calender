@@ -136,14 +136,35 @@ jQuery(document).on('click', '.submit',function(evt){
 
 jQuery(document).on('click', '.modify',function(evt){
   evt.stopPropagation();
-  var area_text = jQuery(this).closest('tr').find('td').eq(1).text();
   var task_id =jQuery(this).parent().parent().find('.task_id').text();
-  // var date = jQuery('.span2').val();
+  // jQuery(this).closest('tr').find('td').eq(2).prepend("<p id='mark'><p>")
 
-  $(".form_datetime").datetimepicker();
+  jQuery(".form_datetime").datetimepicker({
+    format: "yyyy/mm/dd",
+    minView: 2,
+    todayBtn: true
+  });
+  jQuery(this).closest('tr').find('.add-on').click();
 
-   jQuery(this).closest('tr').find('.add-on').click();
- 
+  jQuery(".form_datetime").change(function(){
+    var date = jQuery(this).find('.a').val()
+      jQuery.ajax({
+      url: 'tasks/'+task_id,
+      type: 'PUT',
+      data: {
+        // 'task[content]': area_text,
+        'task[date]': date
+      },
+    success: function(res) {
+
+    // jQuery('#mark').closest('tr').find('td').eq(1).after(
+    //    "<td>"+date+"<div class='hidden_data'><div class='input-append date form_datetime'><div><input class='a' size='16' type='text' readonly></div><span class='add-on'><i class='icon-th'></i></span></div></div></td>")
+    // jQuery('#mark').closest('tr').find('td').eq(3).remove();
+
+
+    }
+    });
+  })
   //   jQuery.ajax({
   //     url: 'tasks/'+task_id,
   //     type: 'PUT',
@@ -158,10 +179,10 @@ jQuery(document).on('click', '.modify',function(evt){
   //   });
   });
 
-jQuery(document).on('click', 'button',function(evt){
-  evt.stopPropagation();
+// jQuery(document).on('click', 'button',function(evt){
+//   evt.stopPropagation();
 
-  });
+//   });
 
 
 
