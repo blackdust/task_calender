@@ -137,8 +137,9 @@ jQuery(document).on('click', '.submit',function(evt){
 jQuery(document).on('click', '.modify',function(evt){
   evt.stopPropagation();
   var task_id =jQuery(this).parent().parent().find('.task_id').text();
-  // jQuery(this).closest('tr').find('td').eq(2).prepend("<p id='mark'><p>")
-
+  jQuery("#mark").remove();
+  jQuery(this).closest('tr').find('td').eq(2).prepend("<p id='mark'><p>")
+   
   jQuery(".form_datetime").datetimepicker({
     format: "yyyy/mm/dd",
     minView: 2,
@@ -156,10 +157,9 @@ jQuery(document).on('click', '.modify',function(evt){
         'task[date]': date
       },
     success: function(res) {
-
-    // jQuery('#mark').closest('tr').find('td').eq(1).after(
-    //    "<td>"+date+"<div class='hidden_data'><div class='input-append date form_datetime'><div><input class='a' size='16' type='text' readonly></div><span class='add-on'><i class='icon-th'></i></span></div></div></td>")
-    // jQuery('#mark').closest('tr').find('td').eq(3).remove();
+    jQuery('#mark').closest('tr').find('td').eq(1).after(
+       "<td>"+date+"<div class='hidden_data'><div class='input-append date form_datetime'><div><input class='a' size='16' type='text' readonly></div><span class='add-on'><i class='icon-th'></i></span></div></div></td>")
+    jQuery('#mark').closest('tr').find('td').eq(3).remove();
 
 
     }
