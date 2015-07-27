@@ -70,20 +70,6 @@ jQuery(document).on('click','.delete', function(evt){
 })
 
 
-
-//   jQuery(document).on('click','.delete', function(evt){ 
-//     evt.stopPropagation();     
-//     var task_id = jQuery(this).parent().parent().find('.task_id').text();
-//     var nod = this;
-//     jQuery.ajax({
-//       url: 'tasks/'+task_id,
-//       type: 'DELETE',
-//     success: function(res) {
-//       jQuery(nod).closest('tr').remove();
-//     }
-//   })       
-// })
-
 jQuery(document).on('click', '.tr',function() {
 var td1_text = jQuery(this).find('td').eq(1).text();
 var textarea = "<td>"+
@@ -131,23 +117,20 @@ jQuery(document).on('click', '.submit',function(evt){
 
   });
 
-
-
-
 jQuery(document).on('click', '.modify',function(evt){
   evt.stopPropagation();
   var task_id =jQuery(this).parent().parent().find('.task_id').text();
   jQuery("#mark").remove();
-  jQuery(this).closest('tr').find('td').eq(2).prepend("<p id='mark'><p>")
+  jQuery(this).closest('tr').find('td').eq(2).prepend("<div id='mark'></div>")
    
   jQuery(".form_datetime").datetimepicker({
-    format: "yyyy/mm/dd",
+    format: "yyyy/m/dd",
     minView: 2,
     todayBtn: true
   });
   jQuery(this).closest('tr').find('.add-on').click();
 
-  jQuery(".form_datetime").change(function(){
+  jQuery(this).closest('tr').find(".form_datetime").change(function(){
     var date = jQuery(this).find('.a').val()
       jQuery.ajax({
       url: 'tasks/'+task_id,
@@ -165,24 +148,8 @@ jQuery(document).on('click', '.modify',function(evt){
     }
     });
   })
-  //   jQuery.ajax({
-  //     url: 'tasks/'+task_id,
-  //     type: 'PUT',
-  //     data: {
-  //       'task[content]': area_text,
-  //       'task[date]': date
-  //     },
-  //   success: function(res) {
-  //     jQuery('.textarea').closest('tr').find('td').eq(0).after('<td>'+area_text+'</td>');
-  //     jQuery('.textarea').closest('td').remove();     
-  //   }
-  //   });
+  
   });
-
-// jQuery(document).on('click', 'button',function(evt){
-//   evt.stopPropagation();
-
-//   });
 
 
 
@@ -191,56 +158,4 @@ jQuery(document).on('click', '.modify',function(evt){
 
 
 
-
-
-
-// jQuery(document).ready(function(){
-//   $('#datetimepicker').datetimepicker();
-// })
-
-
-
- 
-
-
-
-// jQuery(document).ready(function(){
-//   jQuery('.span2').datetimepicker({
-//   language: 'zh-CH',
-//   weekStart: 1,
-//   todayBtn: 1,
-//   autolose: 1,
-//   todayHighlight: 1,
-//   startView: 2,
-//   forceParse: 0,
-//   showMeridian: 1
-//   });
-//  });
-
-
-// });
-
-  // $('#down').click(function(){
-  //   $('h1').after("<div class=\"task\"><br><input type=\"text\" name=\"textfield\" id=\"textfield\"><br><div class=\"button\"><button name=\"button\" type=\"button\" class=\"bt1\">建立</button><button name=\"button\"  type=\"button\" class=\"bt2\">取消</button></div></div>")
-
-  //   $('.bt2').click(function(){
-  //   $(this).parent().parent().remove();
-  //   });
-
-
-
-  //    $('.bt1').click(function(){
-  //     var year = $('span:eq(0)').text()
-  //     var month = $('span:eq(1)').text()
-  //     var date = $('span:eq(2)').text()
-  //     var ymd = year+"/"+month+"/"+date
-  //   input_elm = jQuery(this).closest('.task').find('input').val();
-  //   $('#task_content').val(input_elm)
-  //   $('#task_date').val(ymd)
-  //   $('h1').text('1')
-
-  //   $('#1').click();
-    
-  // });
-  // });
 
