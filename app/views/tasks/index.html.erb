@@ -25,12 +25,12 @@
         <td><div class='task_id'><%=task.id.to_s%></div></td>
         <td><%= task.content %></td>
         <td><%= task.date %>
-        
+          <!-- <div class='hidden_data'> -->
           <div class="input-append date form_datetime ">          
             <div ><input   class = "a hidden_data" size="16" type="text"  readonly></div>
              <span class="add-on"><i class="icon-th"></i></span>
     </div>
-
+  <!-- </div> -->
   </td>
        <td>
         <div class = 'modify'><%=image_tag("http://pic.sucaibar.com/pic/201308/08/ad392948a9.png", size: "40x40", alt: "Edit Entry")%></div>

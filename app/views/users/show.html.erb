@@ -1,57 +1,3 @@
-<style type="text/css">
-table.gridtable {
-  font-family: verdana,arial,sans-serif;
-  font-size:16px;
-  /*color:#333333;*/
-  border-width: 3px;
-  border-color: #666666;
-  border-collapse: collapse;
-}
-table.gridtable th {
-  border-width: 1px;
-  padding: 22px;
-  border-style: solid;
-  border-color: #666666;
-  
-}
-table.gridtable td {
-  border-width: 1px;
-  padding: 30px;
-  border-style: solid;
-  border-color: #666666;
-  
-}
-.weekend{
-  font-size:16px;
-  color:blue;
-}
-#year{color:green;padding: 20px;}
-#month{color:green;padding: 20px;}
-.button{ color: green;padding: 3px;}
-#head{background-image:url('http://i.teamkn.com/i/b9H0bgnp.jpg');
-  border-width: 10px;
-  padding: 6px;
-
-  text-align:center;
-  width:575px;
-  /*float:left*/
-  /*不同标签属性不同*/
-  }
-  #w{float: right;}
-  #q{float：right;}
-  #duiqi{width:575px;
-    }
-  .white{
-  color:#C0C0C0
-  }
- .red{
-  color:red;
-  background-color:rgb(255,130,150);
-  }
- 
-</style>
-
-</head>
 
 <script type="text/javascript">
 jQuery(document).ready(function(){
@@ -372,11 +318,8 @@ if(color == "rgb(192, 192, 192)"){
 }else{
 var a  = year+"/"+month+"/"+date;
  window.location.href ="/tasks?year="+year+"&month="+month+"&date="+date;
-
 }
 });
-
-
  //大方法体
 });
 </script>
@@ -462,17 +405,13 @@ var a  = year+"/"+month+"/"+date;
  <td class='weekend'>no.1</td>
  </tr>
  </table>
-
-
 <p>
   <strong>Name:</strong>
   <%= @user.name %>
 </p>
-
 <p>
   <strong>Mail:</strong>
   <%= @user.mail %>
 </p>
-
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
