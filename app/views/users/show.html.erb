@@ -107,20 +107,26 @@ $('td').each(function()
 $("button:eq(0)").click(function()
 {
  month=parseInt($('#month').text())-1;
+ console.log("显示的month"+month)
  year=parseInt($('#year').text());
+ console.log("显示的year"+year)
  if(month==0){year=year-1; month=11}else{
   month--}
- 
+  console.log("计算的month"+month)
+  console.log("计算的year"+year)
+
+
  var currentfirstday2 = getfirstday(year,month);
  var position2 = getfirstday(year,month)-1;
+  // var date3 = new Date();
 
  var dayscount2 = function(num)
-
   {
   var date3 = new Date();
-   date3.setYear(year);
-   date3.setMonth(month);
-   date3.setDate(num);
+   // date3.setYear(year);
+   // date3.setMonth(month);
+   // date3.setDate(num);
+   date3.setFullYear(year, month, num)
    return date3.toLocaleDateString();
   }
   if(currentfirstday2==0)
@@ -148,7 +154,6 @@ $("button:eq(0)").click(function()
     var x=1;
     var y=1;
     var m;
-
     for(var i=position2;i>-1;i=i-1)
     { 
       m=dayscount2(x);
@@ -164,6 +169,7 @@ $("button:eq(0)").click(function()
     }
   };
 
+
 $('td').each(function()
 {
  $(this).removeClass('white');
@@ -174,11 +180,13 @@ $('td').each(function()
 
  if(month+1==array[1]&&array[0]==year)
   {$(this).text(array[2])
+
     if(currentmonth==array[1]&&array[2]==currentdate&&currentyear==array[0])
     {
      $(this).addClass('red');
     }
   }
+
   else
   {$(this).text(array[2]);
    $(this).addClass('white')
@@ -197,17 +205,20 @@ $('#year').text(year);
 $("button:eq(1)").click(function()
 {
  var year2=parseInt($('#year').text());
- var month2=parseInt($('#month').text())-1;
 
+ var month2=parseInt($('#month').text())-1;
  if(month2==11){month2=0;year2++;}else{month2++}
+
  var currentfirstday2 = getfirstday(year2,month2);
  var position3 = getfirstday(year2,month2)-1;
+ // var date3 = new Date();
  var dayscount3 = function(num)
   {
    var date3 = new Date();
-   date3.setYear(year2);
-   date3.setMonth(month2);
-   date3.setDate(num);
+   // date3.setYear(year2);
+   // date3.setMonth(month2);
+   // date3.setDate(num);
+   date3.setFullYear(year2, month2, num)
    return date3.toLocaleDateString();
   }
 
@@ -261,7 +272,8 @@ $(this).removeClass('white');
  var array=[];
  array=$a.split("/"); 
  if(month2+1==array[1]&&array[0]==year2)
-  {$(this).text(array[2])
+   {$(this).text(array[2])
+    // {$(this).text($a)
     if(currentmonth==array[1]&&array[2]==currentdate&&currentyear==array[0])
     {
      $(this).addClass('red');
